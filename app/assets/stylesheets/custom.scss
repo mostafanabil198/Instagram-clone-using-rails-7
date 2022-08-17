@@ -1,0 +1,51 @@
+html {
+  height: 100vh;
+}
+
+body {
+  background-color: #fafafa;
+  height: 100%;
+}
+
+
+.home-sections {
+  height: 100%;
+  width: 80%;
+}
+
+.images-section, .login-section  {
+  height: 95%;
+  width: 45%;
+  background-position-x: right;
+}
+
+.images-section {
+  background-image: url(home-phone-bg.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card-img-top {
+  max-width: 50%;
+  align-self: center;
+}
+
+.line-text{
+  padding: 0 .5rem; /* creates the space */
+  font-size: small;
+  margin: 0;
+}
+
+.line{
+  flex: 1;
+  height: 1px;
+  background-color: rgb(139, 137, 137);
+}
+
+.facebook {
+  max-width: 1rem;
+  height: auto;
+  margin-right: .5rem
+}
