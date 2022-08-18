@@ -1,29 +1,56 @@
-<h2>Sign up</h2>
+<div class="container home-sections d-flex flex-row justify-content-center align-items-center">
+  <div class="login-section pt-3">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="card text-center pt-5 mx-auto" style="width: 23rem;">
+      <%= image_tag 'logo.png', class: "card-img-top" %>
+      <p class="w-75 fs-6 fw-bold text-secondary align-self-center mt-2"> Sign up to see photos and videos from your friends. </p>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <a href="#" class="d-block mt-4 text-decoration-none fw-bold bg-primary text-white rounded w-75 align-self-center p-1">
+        <%= image_tag("facebook.png", class:  "facebook") %>
+        Log in with Facebook
+      </a>
+
+      <div class="d-flex align-items-center mt-4">
+          <div class="line"></div>
+          <h2 class="line-text">OR</h2>
+          <div class="line"></div>
+        </div>
+
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <div class="mb-3 mt-4">
+            <%= f.email_field :email, class: "form-control", placeholder: "Phone number or email" %>
+          </div>
+          <div class="mb-3 mt-4">
+            <%= f.text_field :full_name, class: "form-control", placeholder: "Full Name" %>
+          </div>
+          <div class="mb-3 mt-4">
+            <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+          </div>
+          <div class="mb-3">
+            <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+          </div>
+          <div class="mb-3">
+            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+          </div>
+          <%= f.submit "Sign up", class:  "btn btn-primary w-100" %>
+        <% end %>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% elsif alert%>
+          <p class="alert"><%= alert %></p>
+        <%end%>
+
+      </div>
+    </div>
+
+    <div class="card text-center py-2 mt-3 mx-auto" style="width: 23rem;">
+      <div class="card-text">
+        have an account? 
+        <%= link_to  "Sign in", new_user_session_path, class: "fs-6 my-4 text-decoration-none text-info" %>
+      </div>
+    </div>
+
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
