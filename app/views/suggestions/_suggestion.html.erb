@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-between">
+  <div class="d-flex">
+    <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2.5rem" %>
+    <div class="d-flex flex-column mx-3">
+      <small class="fw-bold" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:10rem">MustaCode</small>
+      <small class="text-muted" style="font-size:.7rem;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:10rem">Suggested for you by Instagram as He followed you before</small>
+    </div>
+  </div>
+
+  <%= link_to root_path, style: "text-decoration:none" do %>
+    <small class="fw-bold text-primary">Follow</small>
+  <% end %>
+</div>
