@@ -19,11 +19,24 @@
         <%= link_to new_post_path, class: "text-dark" do %> <i class="fa-regular fa-square-plus fa-xl"></i> <%end%>
         <i class="fa-regular fa-compass fa-xl"></i>
         <i class="fa-regular fa-heart fa-xl"></i>
-        <% if current_user && current_user.profile_pic.attached? %>
-          <%= image_tag current_user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 2rem" %>
-        <% else %>
-          <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2rem" %>
-        <% end %>
+
+
+        <div class="dropdown">
+          <a class="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user && current_user.profile_pic.attached? %>
+              <%= image_tag current_user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 2rem" %>
+            <% else %>
+              <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2rem" %>
+            <% end %>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= button_to 'Log out', destroy_user_session_path, class: "dropdown-item", method: :delete%>
+            </li>
+          </ul>
+        </div>
+
+        
       </div>
     </div>
   </div>

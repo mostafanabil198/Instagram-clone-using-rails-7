@@ -1,5 +1,12 @@
-<h1>This is the Home Page!</h1>
-
-<% if current_user %>
-  <%= button_to  "Sign out", destroy_user_session_path, method: :delete %>
-<% end %>
+<div class="d-flex my-5 justify-content-center gap-5">
+  <div class="d-flex flex-column gap-3">
+    <%= render 'story/stories_list' %>
+    <div class="flex flex-column">
+      <%= render 'posts/post', post: current_user.posts.first %>
+      <%= render 'posts/post', post: current_user.posts.first %>
+      <%= render 'posts/post', post: current_user.posts.first %>
+      <%= render 'posts/post', post: current_user.posts.first %>
+    </div>
+  </div>
+  <%= render 'suggestions/suggestions_list' %>
+</div>
