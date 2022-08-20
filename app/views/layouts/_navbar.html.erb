@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg bg-light sticky-top bg-white border-bottom" style="border-color: #afafaf">
+  <div class="container-fluid w-75">
+    <%= link_to root_path, class:"navbar-brand" do %>
+      <%= image_tag 'logo.png', width: "100rem" %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="d-flex">
+      <div class="collapse navbar-collapse me-5" id="navbarSupportedContent">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2 border-0" type="search" placeholder="Search" aria-label="Search" style="background: #efefef">
+        </form>
+      </div>
+
+      <div class="navbar-collapse gap-4">
+        <%=  link_to root_path, class: "text-dark" do %> <i class="fa-solid fa-house fa-xl"></i> <% end %>
+        <i class="fa-brands fa-facebook-messenger fa-xl"></i>
+        <%= link_to new_post_path, class: "text-dark" do %> <i class="fa-regular fa-square-plus fa-xl"></i> <%end%>
+        <i class="fa-regular fa-compass fa-xl"></i>
+        <i class="fa-regular fa-heart fa-xl"></i>
+        <% if current_user && current_user.profile_pic.attached? %>
+          <%= image_tag current_user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 2rem" %>
+        <% else %>
+          <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2rem" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
