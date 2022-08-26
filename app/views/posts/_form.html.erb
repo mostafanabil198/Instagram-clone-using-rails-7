@@ -1,47 +1,74 @@
-<%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<!-- Modal -->
+<div class="modal fade modal-lg" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <%= form_with(model: post) do |form| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Create new post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex">
 
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <div class="border-end border-secondary mx-2" style="width:60%">
+            <%= form.file_field :images, multiple: true %>
+          </div>
 
-  <div>
-    <%= form.label :caption, style: "display: block" %>
-    <%= form.text_field :caption %>
+          <div style="width:40%">
+            <% if post.errors.any? %>
+              <div style="color: red">
+                <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+                <ul>
+                  <% post.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="my-2">
+              <% if current_user.profile_pic.attached? %>
+                <%= image_tag current_user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+              <% else %>
+                <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+              <% end %>
+              <span class="fw-bold mx-2"><%= current_user.username %></span>
+            </div>
+            <div>
+              <%= form.text_area :caption, rows:8, placeholder: "Write a caption...", class: "form-control border-0", style:"resize:none" %>
+            </div>
+
+            <div>
+              <%= form.text_field :location, placeholder: "Add location", class: "form-control" %>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center border form-control my-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <a class="text-dark"  style="text-decoration:none">
+                Advanced Settings
+              </a>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                 <div class="form-check form-switch">
+                    <%= form.check_box :allow_comments, class: "form-check-input", role:"switch" %>
+                    <%= form.label :allow_comments, style: "display: block", class: "form-check-label" %>
+                  </div>
+
+                  <div class="form-check form-switch">
+                    <%= form.check_box :show_likes_count, class: "form-check-input", role:"switch" %>
+                    <%= form.label :show_likes_count, style: "display: block", class: "form-check-label"  %>
+                  </div>
+              </div>
+            </div>
+           
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <%= form.submit "Post", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div>
-    <%= form.label :longitude, style: "display: block" %>
-    <%= form.text_field :longitude %>
-  </div>
-
-  <div>
-    <%= form.label :latitude, style: "display: block" %>
-    <%= form.text_field :latitude %>
-  </div>
-
-  <div>
-    <%= form.label :allow_comments, style: "display: block" %>
-    <%= form.check_box :allow_comments %>
-  </div>
-
-  <div>
-    <%= form.label :show_likes_count, style: "display: block" %>
-    <%= form.check_box :show_likes_count %>
-  </div>
-
-  <div>
-    <%= form.label :images, style: "display: block" %>
-    <%= form.file_field :images, multiple: true %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
