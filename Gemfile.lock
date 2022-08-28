@@ -61,6 +61,8 @@ GEM
       activesupport (= 7.0.3.1)
       marcel (~> 1.0)
       mini_mime (>= 1.1.0)
+    activestorage-validator (0.2.2)
+      rails (>= 6.0.4.1)
     activesupport (7.0.3.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
@@ -247,6 +249,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activestorage-validator
   bootsnap
   bootstrap (~> 5.2.0)
   capybara
