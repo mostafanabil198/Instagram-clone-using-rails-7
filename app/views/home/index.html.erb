@@ -4,9 +4,9 @@
     <%= render 'story/stories_list' %>
     <div class="flex flex-column">
       <%= render 'posts/post', post: current_user.posts.first %>
-      <%= render 'posts/post', post: current_user.posts.first %>
-      <%= render 'posts/post', post: current_user.posts.first %>
-      <%= render 'posts/post', post: current_user.posts.first %>
+      <%= render 'posts/post', post: current_user.posts.second %>
+      <%= render 'posts/post', post: current_user.posts.third %>
+      <%= render 'posts/post', post: current_user.posts.fourth %>
     </div>
   </div>
   <%= render 'suggestions/suggestions_list' %>

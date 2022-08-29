@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between">
+  <div class="d-flex">
+    <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2.5rem" %>
+    <div class="d-flex flex-column mx-3 justify-content-center">
+      <small class="fw-bold" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:10rem"><%= liker.username %></small>
+    </div>
+  </div>
+
+  <%= link_to root_path, class:"btn btn-primary", style: "text-decoration:none" do %>
+    <small class="fw-bold text-white">Follow</small>
+  <% end %>
+</div>

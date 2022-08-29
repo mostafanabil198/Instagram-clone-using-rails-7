@@ -30,7 +30,7 @@
     </div>
 
     <div class="card-body">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+      <div id="post<%= post.id %>_images" class="carousel slide" data-bs-ride="true">
         <div class="carousel-inner">
           <% post.images.each_with_index do |img, i| %>
             <div class="carousel-item <%= i==0 ?  'active' : '' %>" style="height: 25rem">
@@ -38,20 +38,21 @@
             </div>
           <% end %>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#post<%= post.id %>_images" data-bs-slide="prev">
           <span class="carousel-control-prev-icon bg-dark rounded-circle " aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#post<%= post.id %>_images" data-bs-slide="next">
           <span class="carousel-control-next-icon bg-dark rounded-circle " aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
         <div class="carousel-indicators" style="position:static">
           <% post.images.each_with_index do |img, i| %>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= i %>" class=" bg-dark <%= i==0 ?  'active' : '' %>" <%= i==0 ? 'aria-current="true"' : '' %> aria-label="Slide <%= i+1 %>"></button>
+            <button type="button" data-bs-target="#post<%= post.id %>_images" data-bs-slide-to="<%= i %>" class=" bg-dark <%= i==0 ?  'active' : '' %>" <%= i==0 ? 'aria-current="true"' : '' %> aria-label="Slide <%= i+1 %>"></button>
           <% end %>
         </div>
       </div>
+      <%= render "posts/post_actions", post: post %>
       <p class="card-text"><span class="fw-bold"><%= post.user.username %></span> <%= post.caption %></p>
 
       <small class="text-muted"><%= time_ago_in_words(post.created_at) %></small>
@@ -63,3 +64,10 @@
   </div>
 
 </div>
+
+
+<script>
+  document.getElementById("post<%= post.id %>_images").addEventListener("dblclick", function(){
+    document.getElementById("post<%=post.id%>actions-likeBtn").click();
+  })
+</script>

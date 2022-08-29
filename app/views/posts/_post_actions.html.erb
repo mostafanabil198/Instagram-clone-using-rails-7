@@ -1,0 +1,30 @@
+<%= turbo_frame_tag "post#{post.id}actions" do %>
+  <div class="d-flex justify-content-start align-items-center gap-1 mb-3">
+    <%= button_to toggle_like_path(post_id: post.id), method: :post, style: "border:none; background:none", id: "post#{post.id}actions-likeBtn" do %>
+      <i class="<%= post.likes.find_by(user: current_user) ? "fa-solid color-red" : "fa-regular" %> fa-heart fa-xl"></i>
+    <% end %>
+  </div>
+  <a href="#" data-bs-toggle="modal" data-bs-target="#post<%= post.id %>_likesModal" style="text-decoration:none" class="text-dark">
+    <small class="fw-bold my-1"><%= pluralize(post.likes.count, "like") %> </small>
+  </a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="post<%= post.id %>_likesModal" tabindex="-1" aria-labelledby="post<%= post.id %>_likesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="post<%= post.id %>_likesModalLabel">Post Likes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-column gap-3" >
+            <% post.likers.each do |liker| %>
+              <%= render "posts/liker", liker: liker %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
