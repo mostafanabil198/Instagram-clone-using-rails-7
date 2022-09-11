@@ -1,0 +1,22 @@
+<div class="container border-bottom d-flex justify-content-center align-items-center gap-5", style="min-height: 20rem">
+  <%= image_tag user.profile_pic.attached? ? user.profile_pic : 'user-pp.png', class: "img-thumbnail rounded-circle w-25", style: "max-width: 8rem; max-height:8rem" %>
+
+  <div class="w-50 d-flex flex-column gap-4">
+    <div class="d-flex gap-3 align-items-center">
+      <p class="m-0 fw-bold"><%= user.username%></p>
+      <button class="btn border border-1"> Message </button>
+      <button class="btn btn-primary"> Follow </button>
+    </div>
+
+    <div class="d-flex gap-5">
+      <small class="fw-bold"><%= pluralize(user.posts.count, "Post") %></small>
+      <small class="fw-bold"><%= pluralize(100, "Follower") %></small>
+      <small class="fw-bold"><%= pluralize(100, "Following") %></small>
+    </div>
+
+    <div class="d-flex flex-column">
+      <small class="fw-bold"><%= user.full_name%></small>
+      <small><%= user.bio%></small>
+    </div>
+  </div>
+</div>
