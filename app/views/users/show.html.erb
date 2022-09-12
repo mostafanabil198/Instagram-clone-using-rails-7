@@ -1,1 +1,6 @@
 <%= render 'users/profile_header', user: @user %>
+<% if !@user.private || @user == current_user %>
+  <%= render 'users/profile_posts', user: @user %>
+<% else %>
+  <%= render 'users/profile_private' %>
+<% end%>

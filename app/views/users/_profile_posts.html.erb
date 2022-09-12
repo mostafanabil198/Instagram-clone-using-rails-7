@@ -1,0 +1,29 @@
+<div class="container d-flex flex-column">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="w-content border-2 border-top border-dark">
+      <i class="fa-solid fa-table-cells"> </i>
+      <small>Posts</small>
+    </div>
+  </div>
+
+  <div class="row justify-content-center align-items-center">
+    <% user.posts.each do |post| %>
+      <div class="col-lg-4 col-md-6 col-sm-8 p-3 mb-4 profile-post" style="height:20rem;position:relative">
+        <%= link_to post do %>
+          <%= image_tag post.images.first, class:"img-thumbnail", style:"width:100%;height:20rem;object-fit:cover" %>
+          <div class="d-flex align-items-center justify-content-center gap-1 w-100 profile-post-likes">
+            <i class="fa-solid fa-heart fa-xl text-white"> </i>
+            <small class="text-white fw-bold"><%= post.likes.count %> </small>
+            <i class="fa-solid fa-comment fa-xl fa-flip-horizontal text-white"> </i>
+            <small class="text-white fw-bold"><%= post.comments.count %> </small>
+          </div>
+          <% if post.images.count > 1 %>
+            <i class="fa-solid fa-images text-white multiple-images"> </i>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>
