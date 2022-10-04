@@ -1,43 +1,89 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div class="container w-75 card d-flex flex-row my-3 ps-0">
+    <div class="w-25 d-flex flex-column border-end">
+      <a href='#' class="active p-3 profile-edit-btn">Edit Profile</a>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class="w-50 ms-5 d-flex flex-column p-4">
+      <div class="d-flex align-items-center">
+        <%= image_tag resource.profile_pic.attached? ? resource.profile_pic : 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 3rem; max-height:3rem" %>
+        <div class="d-flex flex-column mx-3 justify-content-center">
+          <small class="fw-bold" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:10rem"><%= resource.username %></small>
+          <%= f.file_field :profile_pic, class: "form-control form-control-sm" %>
+        </div>
+        <div class="form-check">
+          <%= f.check_box :private, class:"form-check-input" %>
+          <%= f.label :private_account, class:"form-check-label fw-bold" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+      <div class="row mb-3 mt-3">
+         <%= f.label :full_name, class:"col-sm-4 col-form-label fw-bold" %>
+         <div class="col-sm-8">
+            <%= f.text_field :full_name, placeholder:"Full Name", autofocus: true, class:"form-control" %>
+            <small class="text-muted">Help people discover your account by using the name you're known by: either your full name, nickname, or business name.</small>
+         </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <div class="row mb-3 mt-3">
+         <%= f.label :username, class:"col-sm-4 col-form-label fw-bold" %>
+         <div class="col-sm-8">
+            <%= f.text_field :username, placeholder:"Username", autofocus: true, class:"form-control" %>
+         </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+      <div class="row mb-3 mt-3">
+         <%= f.label :bio, class:"col-sm-4 col-form-label fw-bold" %>
+         <div class="col-sm-8">
+            <%= f.text_area :bio, autofocus: true, class:"form-control", rows:5 %>
+         </div>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+      <div class="row mb-3">
+        <%= f.label :email, class:"col-sm-4 col-form-label fw-bold" %>
+        <div class="col-sm-8">
+          <%= f.email_field :email, autofocus: true, class:"form-control" %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label :phone_number, class:"col-sm-4 col-form-label fw-bold" %>
+        <div class="col-sm-8">
+          <%= f.text_field :phone_number, placeholder:"Phone Number", autofocus: true, class:"form-control" %>
+        </div>
+      </div>
+
+       <div class="row mb-3">
+        <%= f.label :new_password, class:"col-sm-4 col-form-label fw-bold" %>
+        <div class="col-sm-8">
+          <%= f.password_field :password, placeholder:"New Password", autofocus: true, class:"form-control" %>
+          <small class="text-muted">Leave it blank if you don't want to change it.</small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label :new_password_confirmation, class:"col-sm-4 col-form-label fw-bold" %>
+        <div class="col-sm-8">
+          <%= f.password_field :password_confirmation, placeholder:"New Password Confirmation", autofocus: true, class:"form-control" %>
+        </div>
+      </div>
+
+
+      <div class="row mb-3">
+        <%= f.label :current_password, class:"col-sm-4 col-form-label fw-bold" %>
+        <div class="col-sm-8">
+          <%= f.password_field :current_password, placeholder:"Current Password", autofocus: true, class:"form-control" %>
+          <small class="text-muted">Current password required to submit.</small>
+        </div>
+      </div>
+
+      <div class="d-flex mb-2 justify-content-center">
+        <%= f.submit "Submit", class:"btn btn-primary" %>
+      </div>
+      
+    </div>
+
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
