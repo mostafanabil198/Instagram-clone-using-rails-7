@@ -5,7 +5,7 @@
     </a>
   <% end %>
   <% post.comments.last(5).each do |comment| %>
-    <p class="card-text m-0"> <span class="fw-bold"><%= comment.user.username %></span> <%= comment.body %> </p>
+    <p class="card-text m-0"> <%= link_to comment.user, class:  "a-decoration-none" do %> <span class="fw-bold"><%= comment.user.username %></span><% end %> <%= comment.body %> </p>
   <% end %>
 
 

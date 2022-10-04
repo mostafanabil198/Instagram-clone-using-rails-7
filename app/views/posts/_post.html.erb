@@ -5,12 +5,16 @@
     <div class="card-header bg-white">
       <div class="d-flex justify-content-between">
         <div>
-          <% if post.user.profile_pic.attached? %>
-            <%= image_tag post.user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 10%" %>
-          <% else %>
-            <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+          <%= link_to post.user, class:  "a-decoration-none" do %>
+            <% if post.user.profile_pic.attached? %>
+              <%= image_tag post.user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+            <% else %>
+              <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+            <% end %>
           <% end %>
-          <span class="fw-bold mx-2"><%= post.user.username %></span>
+          <%= link_to post.user, class:  "a-decoration-none" do %>
+            <span class="fw-bold mx-2"><%= post.user.username %></span>
+          <% end %>
         </div>
 
         <div>
@@ -20,8 +24,7 @@
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Edit post</a></li>
-              <li><a class="dropdown-item" href="#">Delete post</a></li>
+              <li><%= button_to 'Delete post', post, method: :delete, class:"dropdown-item" %></li>
             </ul>
           </div>
         </div>
