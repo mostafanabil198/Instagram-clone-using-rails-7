@@ -5,16 +5,16 @@
     <div class="d-flex gap-3 align-items-center">
       <p class="m-0 fw-bold"><%= user.username%></p>
       <button class="btn border border-1"> Message </button>
-      <% unless user == current_user %>
-        <button class="btn btn-primary"> Follow </button>
+      <%= render 'layouts/shared/follow_state', user: user %>
+      <% if user == current_user %>
+        <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-transparent border"%>
       <% end %>
-      <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-transparent border"%>
     </div>
 
     <div class="d-flex gap-5">
       <small class="fw-bold"><%= pluralize(user.posts.count, "Post") %></small>
-      <small class="fw-bold"><%= pluralize(100, "Follower") %></small>
-      <small class="fw-bold"><%= pluralize(100, "Following") %></small>
+      <small class="fw-bold"><%= pluralize(user.followers.count, "Follower") %></small>
+      <small class="fw-bold"><%= pluralize(user.followings.count, "Following") %></small>
     </div>
 
     <div class="d-flex flex-column">

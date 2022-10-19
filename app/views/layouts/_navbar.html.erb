@@ -20,9 +20,39 @@
           <i class="fa-regular fa-square-plus fa-xl"></i>
         </a>
         <i class="fa-regular fa-compass fa-xl"></i>
-        <i class="fa-regular fa-heart fa-xl"></i>
 
 
+
+     
+       
+
+        <div class="dropstart">
+          <i class="fa-regular fa-heart fa-xl" data-bs-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu p-4">
+            <% current_user.follow_requests.each do |fr| %>
+              <li>
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex">
+                    <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2.5rem" %>
+                    <div class="d-flex flex-column mx-3 justify-content-center">
+                      <small class="fw-bold" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:5rem"><%= link_to fr.follower, class:  "a-decoration-none" do %><%= fr.follower.username %><% end %></small>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center justify-content-between", style="width: 10.5rem">
+                    <%= button_to accept_follow_path(follow_id: fr.id), method: :post, class:"btn btn-primary", style: "text-decoration:none" do %>
+                      <small class="fw-bold text-white">Accept</small>
+                    <% end %>
+                    <%= button_to decline_follow_path(follow_id: fr.id), method: :delete, class:"btn btn-danger", style: "text-decoration:none" do %>
+                      <small class="fw-bold text-white">Decline</small>
+                    <% end %>
+                  </div>
+                  
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
         <div class="dropdown">
           <a class="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <% if current_user && current_user.profile_pic.attached? %>
