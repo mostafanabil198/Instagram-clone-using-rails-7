@@ -33,7 +33,7 @@
               <li>
                 <div class="d-flex justify-content-between">
                   <div class="d-flex">
-                    <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2.5rem" %>
+                    <%= image_tag fr.follower.profile_pic.attached? ? fr.follower.profile_pic : 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2.5rem" %>
                     <div class="d-flex flex-column mx-3 justify-content-center">
                       <small class="fw-bold" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:5rem"><%= link_to fr.follower, class:  "a-decoration-none" do %><%= fr.follower.username %><% end %></small>
                     </div>

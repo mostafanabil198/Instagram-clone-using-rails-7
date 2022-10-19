@@ -1,8 +1,8 @@
 <% if current_user.followings.include?(user) %>
-  <%= button_to "Unfollow", unfollow_path(user_id: user.id), method: :delete, class:"btn btn-danger"%>
+  <%= button_to "Unfollow", unfollow_path(user_id: user.id), method: :delete, class:"btn btn-danger", data: {turbo: 'false'}%>
 <% elsif current_user.waiting_followings.include?(user) %>
-  <%= button_to "Cancel", cancel_request_path(user_id: user.id), method: :delete, class:"btn btn-secondary"%>
+  <%= button_to "Cancel", cancel_request_path(user_id: user.id), method: :delete, class:"btn btn-secondary", data: {turbo: 'false'}%>
 <% elsif current_user == user %>
 <% else %>
-  <%= button_to "Follow", follow_path(user_id: user.id), method: :post, class:"btn btn-primary"%>
+  <%= button_to "Follow", follow_path(user_id: user.id), method: :post, class:"btn btn-primary", data: {turbo: 'false'}%>
 <% end%>
