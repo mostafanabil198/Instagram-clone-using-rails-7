@@ -8,9 +8,19 @@
     </button>
     <div class="d-flex">
       <div class="collapse navbar-collapse me-5" id="navbarSupportedContent">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 border-0" type="search" placeholder="Search" aria-label="Search" style="background: #efefef">
-        </form>
+        <%= form_with(url: users_path, method: :get, data: {turbo_frame: "search_results", controller: "search-results"}, class:"d-flex") do |f| %>
+
+          <div class="dropdown">
+            <%= f.text_field :search_query, class: "form-control me-2 border-0", type:"search", placeholder:"Search",
+                "aria-label"=>"Search", style: "background: #efefef", "data-bs-toggle"=>"dropdown", "aria-expanded"=>"false",
+                data: {action: "input->search-results#search"} %>
+
+            <ul class="dropdown-menu p-4 mt-2" style="width:25rem">
+              <%= render 'layouts/search_results', users: [] %>
+            </ul>
+          </div>
+
+        <% end %>
       </div>
 
       <div class="navbar-collapse gap-4">
